@@ -7,6 +7,10 @@ type Props = {
 	searchParams?: Record<string, string>;
 }
 
+// there has to be a better way to do this.
+// we should be caching and invalidating when data changes
+export const dynamic = 'force-dynamic';
+
 export default async function Home({ searchParams }: Props) {
 	const showAddModal = searchParams?.add;
 	const roasts = await getRoasts();

@@ -5,6 +5,7 @@ import { type Roast, addRoast as db_addRoast, purgeCacheTag } from "../lib/api";
 export const addRoast = async (data: FormData) => {
 	'use server'
 
+	purgeCacheTag('roasts');
 	const rawFormData = {
 		name: data.get('name'),
 		roaster: data.get('roaster'),
