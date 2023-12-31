@@ -1,22 +1,24 @@
 'use server'
 
-import { post, purgeCacheTag } from "../lib/api";
+import { type Roast, addRoast as db_addRoast, purgeCacheTag } from "../lib/api";
 
 export const addRoast = async (data: FormData) => {
 	'use server'
 
-	purgeCacheTag('roasts');
 	const rawFormData = {
 		name: data.get('name'),
 		roaster: data.get('roaster'),
 		origin: data.get('origin'),
 	};
 
+	const parsed: Omit<Roast, 'id'> = {
+		name: rawFormData.name as string,
+		roaster: rawFormData.roaster as string,
+		origin: rawFormData.origin as string,
+	}
+
 	try {
-		const res = await post('/roasts', rawFormData);
-		const form = document.getElementById('add-new-roast-form');
-		console.log(form);
-		(form as HTMLFormElement).reset();
+		const res = await db_addRoast(parsed);
 	} catch (e) {
 		console.error(e);
 	}

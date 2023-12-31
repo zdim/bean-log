@@ -29,7 +29,7 @@ export default async function Home({ searchParams }: Props) {
 						</tr>
 					</thead>
 					<tbody className="bg-white divide-y divide-gray-200">
-						{roasts.map(r => (
+						{roasts?.map(r => (
 							<tr className="" key={`${r.roaster}-${r.name}`}>
 								<td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{r.name}</td>
 								<td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{r.roaster}</td>
