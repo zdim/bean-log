@@ -3,10 +3,14 @@
 import React from "react";
 import { addRoast } from "../actions/add_roast";
 import Modal from "./modal"
+import { useSearchParams } from "next/navigation";
 
 const AddRoastModal = () => {
 	const ref = React.useRef<HTMLFormElement>(null);
-	return (
+	const searchParams = useSearchParams();
+	const show = searchParams.get('add');
+	
+	return show && (
 		<Modal title="Add Roast">
 			<form ref={ref} id="add-new-roast-form" action={async (formData) => {
 				await addRoast(formData);
