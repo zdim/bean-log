@@ -1,6 +1,6 @@
 'use server'
 
-import { type Roast, addRoast as db_addRoast, purgeCacheTag } from "../lib/api";
+import { type Roast, addRoast as db_addRoast, purgeCacheTag } from "@/lib/api";
 
 export const addRoast = async (data: FormData) => {
 	'use server'
@@ -20,6 +20,7 @@ export const addRoast = async (data: FormData) => {
 
 	try {
 		const res = await db_addRoast(parsed);
+		return res;
 	} catch (e) {
 		console.error(e);
 	}

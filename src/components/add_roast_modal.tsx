@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import { addRoast } from "../actions/add_roast";
+import { addRoast } from "@/actions/add_roast";
 import Modal from "./modal"
 import { useSearchParams } from "next/navigation";
 
@@ -9,13 +9,17 @@ const AddRoastModal = () => {
 	const ref = React.useRef<HTMLFormElement>(null);
 	const searchParams = useSearchParams();
 	const show = searchParams.get('add');
-	
+
+	const submit = async (data: FormData) => {
+		const success = await addRoast(data);
+		if (success) {
+			ref.current?.reset();
+		}
+	}
+
 	return show && (
 		<Modal title="Add Roast">
-			<form ref={ref} id="add-new-roast-form" action={async (formData) => {
-				await addRoast(formData);
-				ref.current?.reset();
-			}}>
+			<form ref={ref} id="add-new-roast-form" action={submit}>
 				<div className="mb-4">
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
 						Name
