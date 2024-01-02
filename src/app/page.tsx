@@ -8,11 +8,12 @@ type Props = {
 	searchParams?: Record<string, string>;
 }
 
+// this prevents all caching.
 // there has to be a better way to do this.
 // we should be caching and invalidating when data changes
 export const dynamic = 'force-dynamic';
 
-export default async function Home({ searchParams }: Props) {
+export default async function Home() {
 	const roasts = await getRoasts();
 
 	return (
