@@ -8,6 +8,10 @@ type Props = {
 	roast: Roast
 };
 
+function Label({ children }: React.PropsWithChildren) {
+	return <div className="uppercase text-xs mt-2">{children}</div>
+}
+
 export default function RoastView({ roast }: Props) {
 	const router = useRouter();
 
@@ -20,13 +24,13 @@ export default function RoastView({ roast }: Props) {
 
 	return (
 		<>
-			<div className="uppercase text-xs mt-2">Name</div>
+			<Label>Name</Label>
 			<div>{roast?.name}</div>
-			<div className="uppercase text-xs mt-2">Roaster</div>
+			<Label>Roaster</Label>
 			<div>{roast?.roaster}</div>
-			<div className="uppercase text-xs mt-2">Origin</div>
+			<Label>Origin</Label>
 			<div>{roast?.origin}</div>
-			<button className="bg-red-200 mt-8 p-2 px-6 rounded-sm" onClick={onDelete}>Delete</button>
+			<button className="bg-red-200 dark:bg-red-600 mt-8 p-2 px-6 rounded-sm" onClick={onDelete}>Delete</button>
 		</>
 	)
 }
